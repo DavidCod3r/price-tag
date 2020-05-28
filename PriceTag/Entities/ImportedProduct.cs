@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace PriceTag.Entities
@@ -15,7 +16,12 @@ namespace PriceTag.Entities
 
         public override string PriceTag()
         {
-            return base.PriceTag();
+            return $"{Name} $ {TotalPrice().ToString("F2", CultureInfo.InvariantCulture)} (Customs fee: $ {CustomsFee.ToString("F2", CultureInfo.InvariantCulture)})";
+        }
+
+        public double TotalPrice()
+        {
+           return  Price += CustomsFee;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace PriceTag.Entities
@@ -8,14 +9,14 @@ namespace PriceTag.Entities
     {
         public DateTime ManufactureDate { get; set; }
 
-        public UsedProduct(string name, double price, DateTime monufactureDate) : base(name, price)
+        public UsedProduct(string name, double price, DateTime manufactureDate) : base(name, price)
         {
             ManufactureDate = ManufactureDate;
         }
 
         public override string PriceTag()
         {
-            return base.PriceTag();
+            return $"{Name} (used) $ {Price.ToString("F2", CultureInfo.InvariantCulture)} (Manufacture date: {ManufactureDate})";
         }
     }
 }
